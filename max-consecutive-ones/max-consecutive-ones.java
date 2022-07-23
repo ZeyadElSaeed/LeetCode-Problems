@@ -7,13 +7,11 @@ class Solution {
                 count ++ ;
             }
             else{
-                if ( max < count )
-                    max = count;
+                max = Math.max( max , count );
                 count = 0;
             }
         }
-        if ( max < count )
-            max = count;
+        max = Math.max( max , count );
         return max ;
         
     }
