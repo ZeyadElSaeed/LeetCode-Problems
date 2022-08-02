@@ -25,8 +25,8 @@ class Solution {
             first = first.next;
             second = second.next;
         }
-        ListNode temp = second.next;
-        second.next = temp.next;
+        first = second.next;
+        second.next = first.next;
         return head;
         
         
