@@ -1,16 +1,27 @@
+import java.util.*;
+import java.awt.Point;
 class Solution {
     public int numSquares(int n) {
-        if ( n <= 3) return n;
+        int[] visited = new int[n+1];
+        Queue<Point> q = new LinkedList<>();
+        int ans = Integer.MAX_VALUE;
         
-        int[] dp = new int [n+1];
-        for ( int i=0; i<=3; i++)
-            dp[i] = i;
+        visited[n] = 1;
+        q.add( new Point( n , 0) );
         
-        for ( int i=4; i<= n; i++){
-            dp[i] =i;
-            for ( int j=1; j*j <=i; j++)
-                dp[i] = Math.min( dp[i] , 1+dp[i- j*j]);
+        while( q.size() != 0){
+            Point p = q.peek();
+            q.remove();
+            
+            if ( p.x == 0) ans = Math.min( ans , p.y );
+            
+            for ( int i=1; i*i<=n; i++){
+                if ( p.x - i*i >= 0  && (visited[p.x - i*i] == 0) ){
+                    visited[p.x - i*i] = 1;
+                    q.add( new Point(p.x - i*i , 1+p.y));
+                }
+            }
         }
-        return dp[n];
+        return ans;
     }
 }
