@@ -2,7 +2,6 @@ import java.awt.Point;
 class Solution {
     public int[] dailyTemperatures(int[] temp) {
         int[] ans = new int [temp.length];
-        Arrays.fill(ans, 0);
         Stack<Point> st = new Stack<Point>();
         for( int i=0; i<temp.length; i++){
             if ( st.size() == 0 ){
