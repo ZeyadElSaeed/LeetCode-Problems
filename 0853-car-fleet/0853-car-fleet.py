@@ -10,7 +10,6 @@ class Solution:
             fromTarget.append((target - x) / y)
 
         fromTarget = [target] + fromTarget
-        print( fromTarget )
         i = len(fromTarget) - 1
         while( i > 0):
             if ( fromTarget[i] < fromTarget[i-1]):
