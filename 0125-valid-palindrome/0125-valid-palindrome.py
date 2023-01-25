@@ -4,15 +4,19 @@ class Solution:
         start = 0
         end = len(s) - 1
 
+        def notAlphanumeric(char):
+            if char < 'a' or char > 'z':
+                if char > '9' or char < '0':
+                    return True
+            return False
+
         while start < end:
-            if s[start] < 'a' or s[start] > 'z':
-                if s[start] > '9' or s[start] < '0':
-                    start += 1
-                    continue
-            if s[end] < 'a' or s[end] > 'z':
-                if s[end] > '9' or s[end] < '0':
-                    end -= 1
-                    continue
+            if notAlphanumeric(s[start]):
+                start += 1
+                continue
+            if notAlphanumeric(s[end]):
+                end -= 1
+                continue
 
             if s[start] != s[end]:
                 return False
