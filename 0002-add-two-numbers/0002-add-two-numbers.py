@@ -8,31 +8,18 @@ class Solution:
         ptr = res = ListNode()
         remain = 0
         
-        while l1 and l2:
-            total = l1.val + l2.val + remain
+        while l1 or l2 or remain:
+            value_1 = l1.val if l1 else 0
+            value_2 = l2.val if l2 else 0
+            #calculation
+            total = value_1 + value_2 + remain
             remain = total // 10
             new_node = ListNode(val = total%10 )
             ptr.next = new_node
+            # update pointers
             ptr = ptr.next
-            l1 = l1.next
-            l2 = l2.next
-        while l1:
-            total = l1.val + remain
-            remain = total // 10
-            new_node = ListNode(val = total%10 )
-            ptr.next = new_node
-            ptr = ptr.next
-            l1 = l1.next
-        while l2:
-            total = l2.val + remain
-            remain = total // 10
-            new_node = ListNode(val = total%10 )
-            ptr.next = new_node
-            ptr = ptr.next
-            l2 = l2.next
-        if remain != 0:
-            new_node = ListNode(val = remain )
-            ptr.next = new_node 
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
             
         return res.next
             
