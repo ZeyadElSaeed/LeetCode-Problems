@@ -7,15 +7,35 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        def recur( node, min_value, max_value ):
+        # using inorder list to evaluate the order of the values
+        def inorder(node, inorder_list):
+            if not node:
+                return
+            inorder(node.left, inorder_list)
+            inorder_list.append(node.val)
+            inorder(node.right, inorder_list)
+            
+        def evaluate_inorder(node):
+            inorder_list = []
+            inorder(node, inorder_list)
+            for i in range(1,len(inorder_list)):
+                if inorder_list[i-1] >= inorder_list[i]:
+                    return False
+            return True
+                     
+                
+        # recursive solution with min, max values
+        def recursion( node, min_value, max_value ):
             if not node:
                 return True
             
             if not (min_value < node.val < max_value):
                 return False
             else:
-                return recur(node.left, min_value, node.val) and recur(node.right, node.val, max_value)
-            
+                return recursion(node.left, min_value, node.val) and recursion(node.right, node.val, max_value)
         
-        return recur(root, float('-inf'), float('inf'))
+        def evaluate_recursion(node):
+            return recursion(node, float('-inf'), float('inf') )
+            
+        return evaluate_inorder(root)
         
