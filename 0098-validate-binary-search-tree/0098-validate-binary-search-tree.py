@@ -37,5 +37,5 @@ class Solution:
         def evaluate_recursion(node):
             return recursion(node, float('-inf'), float('inf') )
             
-        return evaluate_inorder(root)
+        return evaluate_recursion(root)
         
