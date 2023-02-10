@@ -7,16 +7,17 @@ class Node:
 """
 
 class Solution:
-    def preorder(self, root: 'Node') -> List[int]:
-        answer = []
-        def recur(node):
-            if not node:
-                return
-            answer.append(node.val)
-            for child in node.children:
-                recur(child)
+    def preorder(self, root: 'Node') -> List[int]:  
+        res = []
+        def preorder_recursion( node ):
+            if node: 
+                res.append( node.val )
+                for child in node.children:
+                    preorder_recursion( child )
             
-        recur(root)
-        return answer
+            
+        preorder_recursion(root)
+        return res
+            
             
         
