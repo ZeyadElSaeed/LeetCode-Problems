@@ -10,10 +10,7 @@ class Solution:
             for x, y in zip( w1, w2):
                 if letter_to_index[x] == letter_to_index[y]:
                     continue
-                if letter_to_index[x] > letter_to_index[y]:
-                    return False
-                else:
-                    return True
+                return letter_to_index[x] < letter_to_index[y]
             return True if len(w1) <= len(w2) else False
 
         for i in range(1, len(words)):
