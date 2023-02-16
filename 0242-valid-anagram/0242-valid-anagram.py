@@ -1,13 +1,16 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        t = list(t)
-        s = list(s)
         if ( len(t) != len(s)):
             return False
-        
-        for letter in s:
-            if ( letter in t):
-                t.remove(letter)
+        dictionary = {}
+        for char in s:
+            dictionary[char] = dictionary.get(char, 0 ) + 1
+            
+        for char in t:
+            if char not in dictionary:
+                return False
+            elif dictionary[char] <= 0:
+                return False
             else:
-                return False    
+                dictionary[char] -= 1
         return True         
