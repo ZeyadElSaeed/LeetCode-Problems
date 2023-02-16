@@ -7,18 +7,16 @@
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
         
-        sum_leaves = [0]
         def sumLeftNodes( node, isLeft):
             if not node:
-                return
-            if not node.right and not node.left and isLeft:
-                sum_leaves[0] += node.val
-                return
-            sumLeftNodes( node.right, False)
-            sumLeftNodes( node.left, True)
+                return 0
+            if not node.right and not node.left:
+                return node.val if isLeft else 0
+            return sumLeftNodes( node.right, False) + sumLeftNodes( node.left, True)
+            
         
-        sumLeftNodes(root, False)
-        return sum_leaves[0]
+        
+        return sumLeftNodes(root, False)
         
             
             
